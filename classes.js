@@ -29,8 +29,20 @@
   Call your class Employee and receive all the data in the constructor in the order listed above.
 */
 
-//Code Here
+class Employee {
+  constructor(first_name, last_name, email, age) {
+    this.first_name = first_name;
+    this.last_name = last_name;
+    this.email = email;
+    this.age = age;
+  }
+  makeWidget() {
+    return "" + this.first_name + " " + this.last_name + " Widget"
+  }
+}
 
+// const eric = new Employee('eric', 'lastname', 'email@email.com', 25);
+// eric.makeWidget();
 
 
 ////////// PROBLEM 2 //////////
@@ -49,7 +61,22 @@
   Call your new class Manager
 */
 
-//Code Here
+class Manager extends Employee {
+  constructor(first_name, last_name, email, age, reports = []) {
+    super(first_name, last_name, email, age); //refrences above parent
+    this.reports = reports;
+  }
+
+  hire(employee) {
+    this.reports.push(employee);
+  }
+  fire(i) {
+    this.reports.splice(i, 1)
+  }
+}
+
+// const jd = new Manager('jd', 'richer', 'jd@jd.com');
+
 
 
 
@@ -75,7 +102,36 @@
   Call your new class ProgressiveManager
 */
 
-//Code Here
+class ProgressiveManager extends Manager {
+  constructor(first_name, last_name, email, age) {
+    super(first_name, last_name, email, age);
+    this.title = 'Not a manager';
+    this.bonus = 0;
+  }
+  updateTitle() {
+    if (this.reports.length >= 1 && this.reports.length <= 3) {
+      this.title = 'Barely Manager'
+    } else if (this.reports.length >= 4 && this.reports.length <= 10) {
+      this.title = 'Mostly Manager'
+    } else if (this.reports.length >= 11 && this.reports.length <= 50) {
+      this.title = 'Manager'
+    } else if (this.reports.length >= 51 && this.reports.length <= 100) {
+      this.title = 'Manager Plus';
+    } else {
+      this.title = 'Bestest Manager'
+    }
+  }
+  hire(employee) {
+    this.reports.push(employee);
+    this.updateTitle();
+  }
+  fire(i) {
+    this.reports.splice(i, 1);
+    this.bonus += 100;
+    this.updateTitle();
+  }
+}
+
 
 
 
@@ -102,6 +158,26 @@
         - It should set decrease wear_and_tear_count by 10, and set needs_reboot to false
 */
 
-//Code Here
+class Machine {
+  constructor(widgets_made_count = 0, wear_and_tear_count = 0, needs_reboot = false) {
+    this.widgets_made_count = widgets_made_count;
+    this.wear_and_tear_count = wear_and_tear_count;
+    this.needs_reboot = needs_reboot;
+  }
+  makeWidget(num) {
+    num + this.widgets_made_count
+    if (this.wear_and_tear_count % 50 === 0) {
+      this.wear_and_tear_count
+    }
+  }
+  fixMachine() {
+    this.needs_reboot = true
+  }
+  reboot() {
+    return function () {
 
+    }
+  }
+}
+Machine();
 
